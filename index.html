@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>This is the chat page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="assets/css/main.css" media="screen" title="no title" charset="utf-8">
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div id="usernameArea">
+        <form class="form-group" id="usernameForm">
+          <input class="form-control" type="text" name="username" id="username" placeholder="Please choose a username">
+          <input class="btn btn-lg btn-primary" type="submit" name="name" value="Join">
+        </form>
+      </div>
+    <div id="messagingArea">
+      <div class="header">
+
+      </div>
+      <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-3">
+          <div class="well">
+            <h3>Online users</h3>
+            <ul class="list-group" id="users">
+
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-lg-9 col-md-9 col-sm-9">
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="chat" id="chat"></div>
+          </div>
+
+          <form id="messageForm" class="form-group">
+              <div class="col-lg-10 col-md-10 col-sm-10">
+                <textarea id="message" class="form-control"></textarea>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-2">
+                <input type="submit" class="btn btn-primary pull-right" name="name" value="Send message">
+              </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <script   src="https://code.jquery.com/jquery-3.1.0.slim.min.js"   integrity="sha256-cRpWjoSOw5KcyIOaZNo4i6fZ9tKPhYYb6i5T9RSVJG8="   crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/socket.io/socket.io.js">
+    </script>
+    <script type="text/javascript">
+    $(function(){
+      var socket = io.connect();
+      var $messageForm = $("#messageForm");
+      var $message = $("#message");
+      var $chat = $("#chat");
+      var $messagingArea = $("#messagingArea");
+
+      var $usernameArea = $("#usernameArea");
+      var $username = $("#username");
+      var $users = $("#users");
+
+      $usernameArea.submit(function(e){
+        e.preventDefault();
+        $usernameArea.hide();
+        $messagingArea.show();
+        socket.emit('user joined', $username.val());
+      });
+
+      $messageForm.submit(function(e){
+        e.preventDefault();
+        if(!($message.val() == "")) {
+          socket.emit('send message', $message.val());
+          $message.val('');
+        }
+      });
+
+      socket.on('new message', function(data) {
+        $chat.append('<span class="username">'+data.username+': </span>'+'<span class="">'+data.msg+'</span><br>')
+      });
+
+      socket.on('new user', function(data){
+        console.log("New user join the conversation");
+      });
+    });
+    </script>
+  </body>
+</html>
