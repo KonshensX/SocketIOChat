@@ -21,7 +21,7 @@
       <div class="row">
         <div class="col-lg-3 col-md-3 col-sm-3">
           <div class="well">
-            <h3>Online users</h3>
+            <h3 class="text-change">Online users</h3>
             <ul class="list-group" id="users">
 
             </ul>
@@ -46,44 +46,10 @@
     </div>
     </div>
 
-    <script   src="https://code.jquery.com/jquery-3.1.0.slim.min.js"   integrity="sha256-cRpWjoSOw5KcyIOaZNo4i6fZ9tKPhYYb6i5T9RSVJG8="   crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.1.0.slim.min.js"   integrity="sha256-cRpWjoSOw5KcyIOaZNo4i6fZ9tKPhYYb6i5T9RSVJG8="   crossorigin="anonymous"></script>
     <script type="text/javascript" src="/socket.io/socket.io.js">
     </script>
-    <script type="text/javascript">
-    $(function(){
-      var socket = io.connect();
-      var $messageForm = $("#messageForm");
-      var $message = $("#message");
-      var $chat = $("#chat");
-      var $messagingArea = $("#messagingArea");
-
-      var $usernameArea = $("#usernameArea");
-      var $username = $("#username");
-      var $users = $("#users");
-
-      $usernameArea.submit(function(e){
-        e.preventDefault();
-        $usernameArea.hide();
-        $messagingArea.show();
-        socket.emit('user joined', $username.val());
-      });
-
-      $messageForm.submit(function(e){
-        e.preventDefault();
-        if(!($message.val() == "")) {
-          socket.emit('send message', $message.val());
-          $message.val('');
-        }
-      });
-
-      socket.on('new message', function(data) {
-        $chat.append('<span class="username">'+data.username+': </span>'+'<span class="">'+data.msg+'</span><br>')
-      });
-
-      socket.on('new user', function(data){
-        console.log("New user join the conversation");
-      });
-    });
+    <script src="assets/js/client.js">
     </script>
   </body>
 </html>

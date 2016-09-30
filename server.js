@@ -26,14 +26,15 @@ io.sockets.on('connection', function(socket){
     console.log("User disconnected: %s sockets connected", connections.length);
   });
 
-  //send message
+  //Send message
   socket.on('send message', function(data){
     io.sockets.emit('new message', {msg: data});
   });
 
-  //new user
+  //New user
   socket.on('user joined', function(data){
+    console.log('User just joined the channel');
     users.push(data);
-    io.socket.emit('new user', {users: users});
+    io.sockets.emit('new user', {users: users});
   });
 });
