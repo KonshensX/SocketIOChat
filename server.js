@@ -14,6 +14,10 @@ app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
 
+app.get('/chat', function(req, res){
+  res.sendFile(__dirname + '/chat.html');
+});
+
 
 //Socket.IO stuff
 io.sockets.on('connection', function(socket){

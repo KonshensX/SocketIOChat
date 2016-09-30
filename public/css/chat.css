@@ -1,0 +1,138 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(-135deg, rgb(22, 135, 237), rgb(20, 55, 90));
+  background: -webkit-linear-gradient(-135deg, rgb(22, 135, 237), rgb(20, 55, 90));
+  width: 100vw;
+  height: 100vh;
+  font-family: roboto;
+}
+
+.chat {
+  position: absolute;
+  display: block;
+  margin: auto;
+  width: 95vw;
+  height: 95vh;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  box-shadow: 0 10px 20px -12px rgba(0, 0, 0, 0.42), 0 3px 20px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+  background-color: white;
+}
+
+.chat .contacts {
+  float: left !important;
+  height: 100%;
+  width: 20%;
+  background-color: #ebebeb;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  z-index: 0;
+}
+
+.chat .messages {
+  z-index: 1;
+  float: right !important;
+  height: 100%;
+  width: 80%;
+  background-color: #ffffff;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: 10px 0px 20px -12px rgba(0, 0, 0, 0.42), 3px 0 20px 0px rgba(0, 0, 0, 0.12), 8px 0 10px -5px rgba(0, 0, 0, 0.2);
+}
+/*Contacts and shit*/
+.chat .contacts .contacts-title {
+  text-align: center;
+  color: #1687ED;
+  height: 40px;
+  line-height: 40px;
+  background-color: white;
+  font-weight: 200;
+  box-shadow: 0 10px 20px -12px rgba(0, 0, 0, 0.42), 0 3px 20px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+  border-top-left-radius: 10px;
+}
+
+.chat .contacts .contacts-list {
+  overflow: auto;
+}
+
+.chat .contacts .contacts-list ul li {
+  padding: 7px;
+  height: 50px;
+  list-style-type: none;
+}
+
+.chat .contacts .contacts-list ul li img {
+  border-radius: 5px;
+}
+
+.chat .contacts .contacts-list ul li span {
+  margin: auto;
+  position: absolute;
+  margin-left: 10px;
+  list-style-type: none;
+}
+
+/*End of contacts and shit*/
+
+/*Messages and shit*/
+.chat .messages {
+  padding: 10px;
+  overflow: auto;
+}
+
+.chat .messages ul li {
+    display: block;
+    padding: 7px;
+    height: 50px;
+    margin-bottom: 5px;
+    list-style-type: none;
+    background-color: #2dcc70;
+    border-radius: 10px;
+}
+
+.chat .messages ul li img {
+  border-radius: 5px;
+}
+
+.chat .messages ul li span {
+  margin: auto;
+  position: absolute;
+  margin-top: 5px;
+  margin-left: 10px;
+  list-style-type: none;
+}
+
+.chat .messages .new-message {
+  position: fixed;
+  bottom: 0;
+  width: 80%;
+}
+
+.chat .messages .new-message textarea {
+  padding: 7px;
+  border-radius: 5px;
+  width: 89%;
+  border: 1px solid #1687ED;
+}
+
+.chat .messages .new-message input[type="submit"] {
+  position: absolute;
+  width: 8%;
+  height: 90px;
+  margin-left: 5px;
+  color: white;
+  font-weight: bolder;
+  font-size: 1rem;
+  border-radius: 10px;
+  background-color: #1687ED;
+}
+/*End of messages and shit*/
